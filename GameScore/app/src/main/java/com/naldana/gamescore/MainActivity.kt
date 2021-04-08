@@ -22,19 +22,21 @@ class MainActivity : AppCompatActivity(), ScoreFragment.OnScorePlusListener {
             scoreTeamB = it.getInt(TEAM_B, 0)
         }
 
+        // Accediendo al fragmento
         val fragmentManager = supportFragmentManager
 
+        //Creando el fragmento de cada quipo
         val teamAFragment =
             ScoreFragment.newInstance(getString(R.string.title_equipo_a), scoreTeamA)
         val teamBFragment =
             ScoreFragment.newInstance(getString(R.string.title_equipo_b), scoreTeamB)
 
         fragmentManager
-            .beginTransaction()
-            .replace(R.id.team_a_fragment, teamAFragment)
-            .replace(R.id.team_b_fragment, teamBFragment)
-            .addToBackStack(null)
-            .commit()
+            .beginTransaction() // Comenzando transaccion
+            .replace(R.id.team_a_fragment, teamAFragment) // Agregando fragmento 1.Adonde, 2.Fragmento
+            .replace(R.id.team_b_fragment, teamBFragment) // reemplazar el que ya estaba por eso se usa replace
+            .addToBackStack(null) // Cuando le de atras se cierre la aplicacion de un solo
+            .commit() // Ya esta lsito
 
     }
 

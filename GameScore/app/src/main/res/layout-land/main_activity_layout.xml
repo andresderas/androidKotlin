@@ -7,6 +7,8 @@
     android:orientation="horizontal"
     android:padding="@dimen/default_gap">
 
+    <!-- Para que funcione el weight se pone en 0 el width (porque es horizontal)
+    si fuera vertical el height seria 0-->
     <FrameLayout
         android:id="@+id/team_a_fragment"
         android:layout_width="0dp"

@@ -18,6 +18,7 @@ class ScoreFragment : Fragment() {
     private var teamScore = 0
     private var scoreListener: OnScorePlusListener? = null
 
+    // La actividad implementa la interfaz?
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnScorePlusListener) {
@@ -29,25 +30,33 @@ class ScoreFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Vienen argumentos? lee los argumentos que se mandan
         arguments?.let {
             teamName = it.getString(TEAM_NAME) ?: teamName
             teamScore = it.getInt(SCORE)
         }
     }
 
+    // Los elementos visuales se crean de manera dinamica
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        /*
+        Esto retorna un view
+        1. De donde viene el diseño, 2. El padre(container), 3. Usualmente se pone false
+         */
         val view = inflater.inflate(R.layout.score_fragment, container, false)
 
+        // Obteniendo los text views para ponerle los valores
         val teamNameTextView = view.findViewById<TextView>(R.id.text_view_team_name)
         val scoreTextView = view.findViewById<TextView>(R.id.text_view_score_team)
-
+        // Poniendo los valores
         teamNameTextView.text = teamName
         scoreTextView.text = teamScore.toString()
 
+        // Manjenado evento
         val addOne = view.findViewById<Button>(R.id.action_plus_one_team)
         addOne.setOnClickListener {
             teamScore++
@@ -57,6 +66,7 @@ class ScoreFragment : Fragment() {
         return view
     }
 
+    //Funcion que facilita el momento de crear el fragemnto desdre la actividad principal
     companion object {
         fun newInstance(teamName: String, score: Int) = ScoreFragment().apply {
             arguments = Bundle().apply {
@@ -66,6 +76,7 @@ class ScoreFragment : Fragment() {
         }
     }
 
+    // Interfaz que permite delegar el evento a la actividad
     interface OnScorePlusListener {
         fun onPlus(teamName: String, newScore: Int)
     }
