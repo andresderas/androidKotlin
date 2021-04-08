@@ -28,8 +28,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         sendButton.setOnClickListener {
-            val intent = Intent(this, DataActivity::class.java)
+            // Se utiliza intent para mandar cosas a otra actividad
+            val intent = Intent(this, DataActivity::class.java) //De donde y para adonde
             intent.putExtra(DataActivity.MESSAGE_KEY, messageEditText.text.toString())
+            //Siempre se incluye el start
             startActivity(intent)
         }
     }

@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addScoreTeamA: Button
     private lateinit var addScoreTeamB: Button
 
+    // Companion object para guardar los valores
     companion object {
         const val TEAM_A = "TEAM_A"
         const val TEAM_B = "TEAM_B"
@@ -26,10 +27,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_layout)
         bind()
+        // Asiganando los valores guardados al crear
         savedInstanceState?.let {
             scoreTeamA = it.getInt(TEAM_A, 0)
             scoreTeamB = it.getInt(TEAM_B, 0)
         }
+        // Poniendo los valores para que estos sean visibles
         handlerTeamA(0)
         handlerTeamB(0)
         Log.d(TAG,"onCreate")
@@ -64,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         Log.d(TAG,"onRestart")
     }
+
+    //Guardando los valores para que se mantengan al rotar pantalla
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(TEAM_A, scoreTeamA)

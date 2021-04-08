@@ -12,11 +12,13 @@ class DataActivity : AppCompatActivity() {
 
         val messageTextView = findViewById<TextView>(R.id.display_message_text_view)
 
-        val message = intent.extras?.getString(MESSAGE_KEY)
+        // Aqui se esta recibiendo el mensaje desde la otra actividad
+        val message = intent.extras?.getString(MESSAGE_KEY) // El mensaje viene en extras
         messageTextView.text =
             if (message.isNullOrEmpty()) getString(R.string.empty_message) else message
     }
 
+    // Se crea un companion object para evitar errores
     companion object {
         const val MESSAGE_KEY = "MESSAGE_KEY"
     }
