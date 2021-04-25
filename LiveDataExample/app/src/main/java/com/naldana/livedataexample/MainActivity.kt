@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
             displayMessageLowerCase.text = message
         }
 
+        viewModel.messageToNumbers.observe(this) { message ->
+            displayMessageNumbers.text = message
+        }
+
     }
 
     private fun bind() {

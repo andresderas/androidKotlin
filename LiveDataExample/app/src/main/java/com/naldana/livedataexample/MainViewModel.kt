@@ -26,4 +26,13 @@ class MainViewModel : ViewModel() {
         message.toLowerCase(Locale.ROOT)
     }
 
+    var messageToNumbers = Transformations.map(message) { message ->
+        message.replace('A','4').replace('I','1')
+            .replace('O','0').replace('E','3')
+            .replace('S','5').replace('T','7')
+            .replace('a','4').replace('i','1')
+            .replace('o','0').replace('e','3')
+            .replace('s','5').replace('t','7')
+    }
+
 }
