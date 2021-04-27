@@ -9,7 +9,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
+    //Es importante agregar las librerias en gradle scripts,
+    // en esta ocasion la de activity y fragment
     private val viewModel: MainViewModel by viewModels()
     private lateinit var userField: EditText
     private lateinit var passwordField: EditText
@@ -20,13 +21,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bind()
-        userField.setText(viewModel.user)
+        // Asignando los valores guardados en el viewModel a los campos correspondiente
+        userField.setText(viewModel.user) //No maneja .text por eso se utiliza .setText
         passwordField.setText(viewModel.password)
         displayData.text = getDisplayData()
         loginButton.setOnClickListener {
-            viewModel.user = userField.text.toString()
+            viewModel.user = userField.text.toString() //Guardando lo escrito en el viewModel
             viewModel.password = passwordField.text.toString()
-            displayData.text = getDisplayData()
+            displayData.text = getDisplayData() //Cuando cambien que lo muestre
         }
     }
 
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         displayData = findViewById(R.id.display_data)
     }
 
+    //Funcion que obtiene ambos valores guardados en el viewModel y los une en un solo string
     fun getDisplayData() =
             " ${viewModel.user} , ${viewModel.password}"
 
